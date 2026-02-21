@@ -4,9 +4,9 @@ import type { TicketStatus } from "@/lib/support/types";
 
 const VALID_STATUSES: TicketStatus[] = ["open", "in_progress", "resolved"];
 
-export async function PATCH(req: NextRequest, context: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
-    const { id } = context.params;
+    const { id } = await context.params;
     const body = (await req.json()) as { status?: TicketStatus };
 
     if (!body.status || !VALID_STATUSES.includes(body.status)) {

@@ -9,7 +9,7 @@ export const runtime = "nodejs";
 function toModelInput(messages: ChatMessage[]) {
   return messages.map((message) => ({
     role: message.role,
-    content: [{ type: "input_text", text: message.content }],
+    content: message.content,
   }));
 }
 
